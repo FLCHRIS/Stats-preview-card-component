@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lexend+Deca&display=swap');
+
+$VeryDarkBlue: hsl(233, 47%, 7%); // (main background)
+$DarkDesaturatedBlue: hsl(244, 38%, 16%); // (card background)
+$SoftViolet: hsl(277, 64%, 61%); // (accent)
+
+$White: hsl(0, 0%, 100%); // (main heading, stats)
+$SlightlyTransparentWhiteMain: hsla(0, 0%, 100%, 0.75); // (main paragraph)
+$SlightlyTransparentWhiteStat: hsla(0, 0%, 100%, 0.6); // (stat headings)
+
+$fonInter: 'Inter', sans-serif;
+$fontLexend: 'Lexend Deca', sans-serif;
+
+html {
+    font-size: 62.5%;
+}
+
+.main {
+    min-height: 100vh;
+    font-size: 1.5rem;
+    background-color: $VeryDarkBlue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .card {
+        width: 90%;
+        max-width: 25em;
+        margin: 4em auto;
+        background-color: $DarkDesaturatedBlue;
+        overflow: hidden;
+        border-radius: .7em;
+        .card__picture {
+            position: relative;
+            picture {
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba($SoftViolet, .5);
+            }
+        }
+        .card__data {
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            .card__show {
+                position: absolute;
+                top: .5em;
+                left: .5em;
+                border: none;
+                background: none;
+                outline: none;
+                cursor: pointer;
+                transition: transform .5s ease;
+                .show__icon {
+                    width: 1.5em;
+                    transition: transform .5s ease;
+                }
+                .show__icon-active {
+                    transform: rotate(-180deg);
+                }
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+            .card__title {
+                text-align: center;
+                color: $White;
+                font-family: $fonInter;
+                font-size: 2.7rem;
+                line-height: 1.2;
+                span {
+                    color: $SoftViolet;
+                }
+            }
+            .card__slide {
+                height: 0;
+                margin-top: 2em;
+                overflow: hidden;
+                transition: height .5s ease;
+                .card__paragraph {
+                    font-family: $fonInter;
+                    text-align: center;
+                    color: $SlightlyTransparentWhiteStat;
+                }
+                .slide__container {
+                    margin-top: 2em;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 2em;
+                    .card__information {
+                        font-family: $fonInter;
+                        font-weight: 700;
+                        color: $White;
+                        font-size: 2.7rem;
+                        text-align: center;
+                        text-transform: uppercase;
+                        span {
+                            display: block;
+                            font-size: 1.5rem;
+                            font-weight: 400;
+                            font-family: $fontLexend;
+                            letter-spacing: 2px;
+                            color: $SlightlyTransparentWhiteStat;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .attribution {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 1.2rem;
+        text-align: end;
+        color: $White;
+        font-family: $fonInter;
+        a {
+            color: $SlightlyTransparentWhiteStat;
+            text-decoration: none;
+            transition: color .3s;
+            &:hover {
+                color: $SoftViolet;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 755px){
+    .main {
+        font-size: 1.6rem;
+        .card {
+            width: 90%;
+            max-width: 55em;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 'data img';
+            .card__picture {
+                grid-area: img;
+                height: 100%;
+                picture {
+                    height: 100%;
+                    img {
+                        height: 100%;
+                    }
+                }
+            }
+            .card__data {
+                padding: 2em 3em;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .card__title {
+                    text-align: start;
+                    font-size: 2.8rem;
+                }
+                .card__slide {
+                    margin-top: 2em;
+                    .card__paragraph {
+                        text-align: start;
+                        font-size: 1.6rem;
+                    }
+                    .slide__container {
+                        flex-direction: row;
+                        .card__information {
+                            font-size: 2.8rem;
+                            text-align: start;
+                            span {
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
